@@ -13,11 +13,6 @@ class AppContext: ObservableObject {
     lazy var api: API = SemiAPI(appContext: self)
     
     var favoritesMovies: [Int] = []
-            //TODO: FInd correct place for it
-//            if let index = favoritesList.firstIndex(where: { $0 == 3 }) {
-//                favoritesList.remove(at: index)
-//            }
-//            UserDefaults.standard.set(favoritesList, forKey: "myArray")
     
     init() {}
 

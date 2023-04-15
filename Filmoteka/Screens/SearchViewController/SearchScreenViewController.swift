@@ -217,7 +217,14 @@ extension SearchScreenViewController: SearchScreenResultsViewDelegate {
     }
     
     func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, didPressFavorite film: Film) {
-        debugPrint(film.id)
+        guard let appContext else { return }
+        if let index = appContext.favoritesMovies.firstIndex(where: { $0 == film.id }) {
+            appContext.favoritesMovies.remove(at: index)
+        } else {
+            appContext.favoritesMovies.append(film.id)
+        }
+        UserDefaults.standard.set(appContext.favoritesMovies, forKey: "favoritesMovies")
+        reloadData()
     }
     
     //MARK: - Paging

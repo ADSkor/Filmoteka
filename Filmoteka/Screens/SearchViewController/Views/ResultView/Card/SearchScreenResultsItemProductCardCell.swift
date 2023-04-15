@@ -43,7 +43,6 @@ class SearchScreenResultsItemProductCardCell: TableViewAdapterCell {
         dateLabel?.text = data.film.release_date
         mainImageView?.layer.cornerRadius = 2
         mainImageView?.clipsToBounds = true
-        mainImageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
         mainImageView?.sd_setImage(
             with: URL(string: "https://image.tmdb.org/t/p/w300\(data.film.poster_path)"),
             placeholderImage: UIImage(named: "empty_image")
