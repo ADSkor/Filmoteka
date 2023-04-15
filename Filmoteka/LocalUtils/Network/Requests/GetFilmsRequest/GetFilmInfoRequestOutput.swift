@@ -10,11 +10,11 @@ import Miji
 import SwiftyJSON
 
 class GetFilmInfoRequestOutput: SerializedData {
-    var json: JSON = JSON("")
+    var fullFilmsInfo: FullFilmsInfo = FullFilmsInfo(json: JSON(""))
 
     public required init(serializedData: Any) {
         super.init(serializedData: serializedData)
         guard let json = serializedData as? JSON else { return }
-        self.json = json
+        fullFilmsInfo = FullFilmsInfo(json: json)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import Miji
 
 protocol SearchScreenResultsViewDelegate: AnyObject {
-    func SearchScreenResultsViewDidTap(_ view: SearchScreenResultsView, https: String)
-    func SearchScreenResultsViewPreviousDidTap(_ view: SearchScreenResultsView, https: String?)
-    func SearchScreenResultsViewNextDidTap(_ view: SearchScreenResultsView, https: String?)
+    func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, film: Film)
+    func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, didPressFavorite: Film)
+    func searchScreenResultsViewDidReachBottom(_ view: SearchScreenResultsView)
 }

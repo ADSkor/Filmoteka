@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E6C551929E9A5B50071D178 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 1E6C551829E9A5B50071D178 /* SwiftyJSON */; };
 		1E6C551C29E9A6080071D178 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1E6C551B29E9A6080071D178 /* Alamofire */; };
-		1E6C552029E9A8050071D178 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6C551F29E9A8050071D178 /* Context.swift */; };
+		1E6C552029E9A8050071D178 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6C551F29E9A8050071D178 /* AppContext.swift */; };
 		1E6C552329E9A96F0071D178 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6C552229E9A96F0071D178 /* API.swift */; };
 		1E6C552629E9A9E80071D178 /* SemiAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6C552529E9A9E80071D178 /* SemiAPI.swift */; };
 		1E6C552829E9AA460071D178 /* SeemiAPIFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6C552729E9AA460071D178 /* SeemiAPIFlags.swift */; };
@@ -69,6 +69,8 @@
 		1EB2BCB829EA62870020232F /* ApplicationInitializeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EB2BCB629EA62860020232F /* ApplicationInitializeViewController.storyboard */; };
 		1EB2BCB929EA62870020232F /* ApplicationInitializeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2BCB729EA62860020232F /* ApplicationInitializeViewController.swift */; };
 		1EB2BCBB29EA7EBC0020232F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2BCBA29EA7EBC0020232F /* Secrets.swift */; };
+		1EB2BCBE29EAA9DA0020232F /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2BCBD29EAA9DA0020232F /* Film.swift */; };
+		1EB2BCC029EAD5FA0020232F /* FullFilmsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2BCBF29EAD5FA0020232F /* FullFilmsInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +92,7 @@
 
 /* Begin PBXFileReference section */
 		1E6C551D29E9A6580071D178 /* Miji */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Miji; sourceTree = "<group>"; };
-		1E6C551F29E9A8050071D178 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		1E6C551F29E9A8050071D178 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		1E6C552229E9A96F0071D178 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		1E6C552529E9A9E80071D178 /* SemiAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemiAPI.swift; sourceTree = "<group>"; };
 		1E6C552729E9AA460071D178 /* SeemiAPIFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeemiAPIFlags.swift; sourceTree = "<group>"; };
@@ -152,6 +154,8 @@
 		1EB2BCB629EA62860020232F /* ApplicationInitializeViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ApplicationInitializeViewController.storyboard; sourceTree = "<group>"; };
 		1EB2BCB729EA62860020232F /* ApplicationInitializeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationInitializeViewController.swift; sourceTree = "<group>"; };
 		1EB2BCBA29EA7EBC0020232F /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		1EB2BCBD29EAA9DA0020232F /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
+		1EB2BCBF29EAD5FA0020232F /* FullFilmsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullFilmsInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +197,9 @@
 		1E6C551E29E9A7F20071D178 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1E6C551F29E9A8050071D178 /* Context.swift */,
+				1E6C551F29E9A8050071D178 /* AppContext.swift */,
+				1EB2BCBD29EAA9DA0020232F /* Film.swift */,
+				1EB2BCBF29EAD5FA0020232F /* FullFilmsInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				1EB2BCBB29EA7EBC0020232F /* Secrets.swift in Sources */,
 				1E6C554F29EA54780071D178 /* EmptySpaceCell.swift in Sources */,
 				1E6C552C29E9AABC0071D178 /* BackendAPI.swift in Sources */,
+				1EB2BCC029EAD5FA0020232F /* FullFilmsInfo.swift in Sources */,
 				1E6C555329EA54780071D178 /* TextCellData.swift in Sources */,
 				1E7B8BA629E9A16600F7562A /* SearchScreenResultsViewItemsFactory.swift in Sources */,
 				1E6C553129EA3DE00071D178 /* GetFilmInfoRequestInput.swift in Sources */,
@@ -644,6 +651,7 @@
 				1E6C552629E9A9E80071D178 /* SemiAPI.swift in Sources */,
 				1E6C555229EA54780071D178 /* TextCell.swift in Sources */,
 				1E6C553C29EA3FF30071D178 /* AlamofireTransportRequest.swift in Sources */,
+				1EB2BCBE29EAA9DA0020232F /* Film.swift in Sources */,
 				1E6C554429EA48F90071D178 /* UIViewController.swift in Sources */,
 				1E6C555629EA5C070071D178 /* UIActivityIndicatorView.swift in Sources */,
 				1E6C552329E9A96F0071D178 /* API.swift in Sources */,
@@ -652,7 +660,7 @@
 				1E7B8B8C29E9A16600F7562A /* SearchScreenDataFetcher.swift in Sources */,
 				1E7B8B9A29E9A16600F7562A /* SearchScreenNoResultsView.swift in Sources */,
 				1E6C554229EA48A20071D178 /* TimeoutRequestRetryFlowController.swift in Sources */,
-				1E6C552029E9A8050071D178 /* Context.swift in Sources */,
+				1E6C552029E9A8050071D178 /* AppContext.swift in Sources */,
 				1E7B8B9F29E9A16600F7562A /* SearchScreenNoResultsViewDelegate.swift in Sources */,
 				1E7B8B8E29E9A16600F7562A /* SearchScreenViewControllerState.swift in Sources */,
 				1E6C555029EA54780071D178 /* EmptySpaceCellData.swift in Sources */,

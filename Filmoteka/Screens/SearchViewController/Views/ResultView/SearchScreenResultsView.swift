@@ -12,47 +12,29 @@ import UIKit
 class SearchScreenResultsView: XibView {
     weak var delegate: SearchScreenResultsViewDelegate?
 
-    @IBOutlet private weak var nextButton: UIButton?
-    @IBOutlet private weak var previousButton: UIButton?
     @IBOutlet private weak var tableView: UITableView?
-
     private let tableViewAdapter = TableViewAdapter()
-    @IBOutlet private weak var tableViewTopConstarint: NSLayoutConstraint?
-    
-    private var nextPage: String?
-    private var previousPage: String?
     
     func set(
-        nextPage: String?,
-        previousPage: String?,
-        results: [[String:Any]]?
+        films: [Film]?,
+        resultsViewDelegate: SearchScreenResultsViewDelegate,
+        appContext: AppContext?
     ) {
-        self.nextPage = nextPage
-        self.previousPage = previousPage
+        self.delegate = resultsViewDelegate
         
         let items = SearchScreenResultsViewItemsFactory.items(
-            results: results,
-            resultsView: self
+            films: films,
+            resultsView: self,
+            appContext: appContext
         )
-        nextButton?.isHidden = nextPage == nil
-        previousButton?.isHidden = previousPage == nil
-        tableViewTopConstarint?.constant = nextPage == nil && previousPage == nil ? 0 : 48
-
+        
         tableViewAdapter.tableView = tableView
         tableViewAdapter.delegate = self
 
         tableViewAdapter.set(items: items)
     }
     
-    
-    @IBAction func previousButtonDidPressed(_ sender: UIButton) {
-        delegate?.SearchScreenResultsViewPreviousDidTap(self, https: previousPage)
-    }
-    
-    @IBAction func nextButtonDidPressed(_ sender: UIButton) {
-        delegate?.SearchScreenResultsViewNextDidTap(self, https: nextPage)
-    }
-    
+    //TODO: Scroll to top with button at the end
     func scrollToTop() {
         tableViewAdapter.scrollToTop()
     }
@@ -60,12 +42,22 @@ class SearchScreenResultsView: XibView {
 
 extension SearchScreenResultsView: TableViewAdapterDelegate {
     func tableViewAdapter(adapter _: TableViewAdapter, didSelectCell _: TableViewAdapterCell, item _: CellItem) {
-        debugPrint("We can use it directly from Cell and use any Data from inside")
+        debugPrint("We can send information from any cell and use any data through delegation. SOLI[D] - Dependency inversion 'in the flesh'")
+    }
+    
+    func tableViewAdapter(adapter: TableViewAdapter, didReachScrollViewContentPosition position: ScrollViewContentPosition, offset: CGFloat) {
+        if position == .bottom {
+            delegate?.searchScreenResultsViewDidReachBottom(self)
+        }
     }
 }
 
 extension SearchScreenResultsView: SearchScreenResultsItemProductCardCellDelegate {
-    func searchScreenResultsItemProductCardCell(_ cell: SearchScreenResultsItemProductCardCell, didSelectElement value: String) {
-        delegate?.SearchScreenResultsViewDidTap(self, https: value)
+    func searchScreenResultsItemProductCardCell(_ cell: SearchScreenResultsItemProductCardCell, didSelect film: Film) {
+        delegate?.searchScreenResultsViewDidTap(self, film: film)
+    }
+    
+    func searchScreenResultsItemProductCardCell(_ cell: SearchScreenResultsItemProductCardCell, didTapFavorite film: Film) {
+        delegate?.searchScreenResultsViewDidTap(self, didPressFavorite: film)
     }
 }

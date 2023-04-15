@@ -9,15 +9,15 @@ import Foundation
 import Miji
 
 class SemiAPI: API {
-    private let context: Context
-    private lazy var mockAPI = MockAPI(context: self.context)
-    private lazy var backendAPI = BackendAPI(context: self.context)
+    private let appContext: AppContext
+    private lazy var mockAPI = MockAPI(appContext: self.appContext)
+    private lazy var backendAPI = BackendAPI(appContext: self.appContext)
 
     @PersistentGlobalVariable(SemiAPIFlags.MOCK_GET_FILM_INFO.rawValue, false)
     private var mockGetFilmInfoEnabled: Bool
 
-    init(context: Context) {
-        self.context = context
+    init(appContext: AppContext) {
+        self.appContext = appContext
     }
     
     func getFilmInfo(_ input: GetFilmInfoRequestInput) -> GetFilmInfoRequest {

@@ -9,12 +9,12 @@ import Foundation
 import Miji
 
 class MockAPI: API {
-    private let context: Context
+    private let appContext: AppContext
 
     init(
-        context: Context
+        appContext: AppContext
     ) {
-        self.context = context
+        self.appContext = appContext
     }
 
     func getFilmInfo(_ input: GetFilmInfoRequestInput) -> GetFilmInfoRequest {

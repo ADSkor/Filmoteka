@@ -10,12 +10,12 @@ import Miji
 import SwiftyJSON
 
 class BackendAPI: API {
-    private let context: Context
+    private let appContext: AppContext
 
     init(
-        context: Context
+        appContext: AppContext
     ) {
-        self.context = context
+        self.appContext = appContext
     }
     
     func getFilmInfo(_ input: GetFilmInfoRequestInput) -> GetFilmInfoRequest {
