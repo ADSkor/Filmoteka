@@ -11,6 +11,14 @@ import SwiftyJSON
 public class Utils {
     public init() {}
     
+    func save(
+        object: Any,
+        as key: String
+    ) {
+        UserDefaults.standard.set(object, forKey: key)
+        debugPrint("\(key) saved")
+    }
+    
     public func loadJSON(key: String) -> JSON? {
         guard let serializedData = UserDefaults.standard.string(forKey: key) else { return nil }
         let json = loadJSON(jsonString: serializedData)

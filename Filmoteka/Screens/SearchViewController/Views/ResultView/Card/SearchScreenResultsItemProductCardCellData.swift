@@ -12,16 +12,16 @@ import UIKit
 class SearchScreenResultsItemProductCardCellData: TableViewAdapterItemData {
     private(set) weak var delegate: SearchScreenResultsItemProductCardCellDelegate?
 
-    let value: String
-    let isClickable: Bool
+    let film: Film
+    var isFavorite: Bool
 
     init(
-        value: String,
-        isClickable: Bool,
+        isFavorite: Bool,
+        film: Film,
         delegate: SearchScreenResultsItemProductCardCellDelegate?
     ) {
-        self.value = value
-        self.isClickable = isClickable
+        self.isFavorite = isFavorite
+        self.film = film
         self.delegate = delegate
     }
 }

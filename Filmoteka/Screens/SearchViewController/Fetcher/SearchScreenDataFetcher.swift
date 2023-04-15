@@ -13,23 +13,23 @@ class SearchScreenDataFetcher {
     weak var delegate: SearchScreenDataFetcherDelegate?
 
     private var fetchingInProgress = false
-    private let context: Context
+    private let appContext: AppContext
 
     private let bag: Bag = .init()
 
     init(
-        context: Context,
+        appContext: AppContext,
         delegate: SearchScreenDataFetcherDelegate?
     ) {
-        self.context = context
+        self.appContext = appContext
         self.delegate = delegate
     }
 
     func fetch(endpointString: String) {
         guard !fetchingInProgress else { return }
         fetchingInProgress = true
-        
-        context.api.getFilmInfo(
+        //MARK: - cacheOptions for cache. Offline acces for 2 hours in that example
+        appContext.api.getFilmInfo(
             GetFilmInfoRequestInput(
                 endpointString: endpointString,
                 cacheOptions: (.timeInterval(.Hours(2)), endpointString)
@@ -42,7 +42,7 @@ class SearchScreenDataFetcher {
                 self.delegate?.searchScreenDataFetcher(self, didFetch: error)
             }
             guard let payload = output.payload else { return }
-            self.delegate?.searchScreenDataFetcher(self, didFetch: payload.json)
+            self.delegate?.searchScreenDataFetcher(self, didFetch: payload.fullFilmsInfo)
         }
     }
 }
@@ -50,7 +50,7 @@ class SearchScreenDataFetcher {
 protocol SearchScreenDataFetcherDelegate: AnyObject {
     func searchScreenDataFetcher(
         _ fetcher: SearchScreenDataFetcher,
-        didFetch json: JSON
+        didFetch fullFilmsInfo: FullFilmsInfo
     )
 
     func searchScreenDataFetcher(

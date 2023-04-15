@@ -21,13 +21,17 @@ class SearchScreenViewController: CustomViewController {
 
     private let network = Network.shared
     
-    private var context: Context?,
-                nextPage: String?,
-                previousPage: String?,
-                results: [[String:Any]]?,
+    private var films: [Film]? {
+                    didSet {
+                        reloadData()
+                    }
+                }
+    private var appContext: AppContext?,
                 state: SearchScreenViewControllerState = .noResults,
-                previousSearchText = "",
                 searchText = "",
+                previousSearchText = "",
+                requestedPage = 1,
+                lastPage = 1,
                 tableViewAdapter: TableViewAdapter?,
                 dataFetcher: SearchScreenDataFetcher?,
                 runSearchOnStart = false,
@@ -35,12 +39,12 @@ class SearchScreenViewController: CustomViewController {
                 animatedPresentation = true
     
     static func fromStoryboard(
-        context: Context,
+        appContext: AppContext,
         searchText: String,
         animatedPresentation: Bool = true
     ) -> UIViewController {
         let viewController: SearchScreenViewController = .fromStoryboard()
-        viewController.context = context
+        viewController.appContext = appContext
         viewController.searchText = searchText
         viewController.animatedPresentation = animatedPresentation
         return viewController
@@ -53,17 +57,22 @@ class SearchScreenViewController: CustomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupToHideKeyboardOnTapOnView()
         unlockInterface()
         statusBarView?.backgroundColor = .blue.withAlphaComponent(0.3)
 
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = .white
 
+        guard let appContext else { return }
+        dataFetcher = SearchScreenDataFetcher(
+            appContext: appContext,
+            delegate: self
+        )
+        
         searchTextFieldView?.delegate = self
         searchTextFieldView?.setFocus()
         searchTextFieldView?.set(text: searchText)
-        searchTextFieldView?.set(backButtonIsHidden: true)
 
         searchResultsView?.delegate = self
         noResultsView?.delegate = self
@@ -81,35 +90,30 @@ class SearchScreenViewController: CustomViewController {
 
     func reloadData() {
         searchResultsView?.set(
-            nextPage: nextPage,
-            previousPage: previousPage,
-            results: results
+            films: films,
+            resultsViewDelegate: self,
+            appContext: appContext
         )
+        
         set(state: .results)
     }
 
     private func performSearchText() {
         guard searchText.count > 0 else { return }
-        results = [[:]]
+        guard searchText != previousSearchText else { return }
         previousSearchText = searchText
+        
+        films = []
 
         set(state: .fetching)
-
-        guard let context else { return }
-
-        dataFetcher = SearchScreenDataFetcher(
-            context: context,
-            delegate: self
-        )
-        dataFetcher?.fetch(endpointString: searchText)
+        
+        requestedPage = 1
+        dataFetcher?.fetch(endpointString: searchText.replacingOccurrences(of: " ", with: "+"))
     }
     
-    
-    //TODO: Change swapi
-    private func proceedFutherWith(https: String?) {
-        let correctText = https?.replacingOccurrences(of: "https://swapi.dev/api/", with: "") ?? ""
-        searchTextFieldView?.set(text: correctText)
-        searchText = correctText
+    private func startSearchWith(string: String) {
+        searchTextFieldView?.set(text: string)
+        searchText = string
         performSearchText()
     }
 
@@ -124,7 +128,7 @@ class SearchScreenViewController: CustomViewController {
             
         case .fetching:
             view.endEditing(true)
-            searchResultsView?.isHidden = results?.count ?? 0 < 1
+            searchResultsView?.isHidden = films?.count ?? 0 < 1
             activityIndicatorView?.start()
             noResultsView?.isHidden = true
 
@@ -146,13 +150,13 @@ class SearchScreenViewController: CustomViewController {
     private func reloadNoResultView() {
         noResultsView?.set(
             searchText: searchText,
-            examples: ["people/1/", "planets/3/", "starships/9/"],
+            examples: ["Pulp Fiction", "Matrix", "Crocodile Dundee"],
             delegate: self
         )
     }
 
     private func handleSearchTextDidChange(text: String) {
-        
+        //If wee need to check every single letter for something...
     }
 }
 
@@ -169,13 +173,33 @@ extension SearchScreenViewController: SearchScreenTextFieldViewDelegate {
         searchText = text
         performSearchText()
     }
-
-    func searchScreenTextFieldViewDidTapBackButton(_: SearchScreenTextFieldView) {
-//        popBack(animated: animatedPresentation)
-    }
 }
 
 extension SearchScreenViewController: SearchScreenDataFetcherDelegate {
+    func searchScreenDataFetcher(_ fetcher: SearchScreenDataFetcher, didFetch fullFilmsInfo: FullFilmsInfo) {
+        
+        guard state == .fetching else { return }
+        debugPrint("page \(fullFilmsInfo.page) of \(fullFilmsInfo.total_pages) pages")
+        lastPage = fullFilmsInfo.total_pages
+        
+        if self.films?.count ?? 0 < 1 {
+            searchResultsView?.scrollToTop()
+        }
+        
+        if previousSearchText == searchText {
+            films?.append(contentsOf: fullFilmsInfo.results)
+        } else {
+            films = fullFilmsInfo.results
+        }
+        
+        if self.films?.count ?? 0 < 1 {
+            set(state: .noResults)
+        }
+        else {
+            set(state: .results)
+        }
+    }
+    
     func searchScreenDataFetcher(_ fetcher: SearchScreenDataFetcher, didFetch error: Error?) {
         guard let error else {
             showAlert(title: "'SearchScreenDataFetcher' did fetch Error, but can't recognize it like 'Error'")
@@ -185,81 +209,30 @@ extension SearchScreenViewController: SearchScreenDataFetcherDelegate {
             self.set(state: .noResults)
         }
     }
-
-    func searchScreenDataFetcher(_ fetcher: SearchScreenDataFetcher, didFetch json: JSON) {
-        debugPrint(json)
-        guard state == .fetching else { return }
-        if self.results?.count ?? 0 < 1 {
-            searchResultsView?.scrollToTop()
-        }
-        separate(json: json) { results, previousPage, nextPage in
-            self.results = results
-            self.previousPage = previousPage
-            self.nextPage = nextPage
-        }
-        searchResultsView?.set(nextPage: nextPage, previousPage: previousPage, results: results)
-        if self.results?.count ?? 0 < 1 {
-            set(state: .noResults)
-        }
-        else {
-            set(state: .results)
-        }
-    }
-    
-    private func separate(json: JSON, completion: (([[String:Any]]?, String?, String?) -> Void)?) {
-        var resultDictionary: [[String:Any]] = [[:]]
-        if let arrayValue = json["results"].array {
-            arrayValue.forEach { jsonElement in
-                resultDictionary.append(
-                    jsonToCorrectDictionary(
-                        json: jsonElement
-                    )
-                )
-            }
-        } else if json.dictionary != nil {
-            resultDictionary.append(
-                jsonToCorrectDictionary(
-                    json: json
-                )
-            )
-        }
-        
-        let previous = json["previous"].string
-        let next = json["next"].string
-        completion?(resultDictionary, previous, next)
-    }
-    
-    func jsonToCorrectDictionary(json:JSON) -> [String:Any] {
-        var resultDictionaryElement: [String:Any] = [:]
-        json.dictionary?.forEach({ (key: String, value: JSON) in
-            if let string = value.string {
-                resultDictionaryElement[key] = string
-            } else if let array = value.array {
-                var outputArray: [String] = []
-                array.forEach({ outputArray.append($0.stringValue) })
-                resultDictionaryElement[key] = outputArray
-            }
-        })
-        return resultDictionaryElement
-    }
 }
 
 extension SearchScreenViewController: SearchScreenResultsViewDelegate {
-    func SearchScreenResultsViewDidTap(_ view: SearchScreenResultsView, https: String) {
-        proceedFutherWith(https: https)
+    func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, film: Film) {
+        debugPrint(film.id)
     }
     
-    func SearchScreenResultsViewPreviousDidTap(_ view: SearchScreenResultsView, https: String?) {
-        proceedFutherWith(https: https)
+    func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, didPressFavorite film: Film) {
+        debugPrint(film.id)
     }
     
-    func SearchScreenResultsViewNextDidTap(_ view: SearchScreenResultsView, https: String?) {
-        proceedFutherWith(https: https)
+    //MARK: - Paging
+    func searchScreenResultsViewDidReachBottom(_ view: SearchScreenResultsView) {
+        guard state == .results else { return }
+        if lastPage != requestedPage {
+            requestedPage += 1
+            set(state: .fetching)
+            dataFetcher?.fetch(endpointString: "\(searchText.replacingOccurrences(of: " ", with: "+"))&page=\(requestedPage)")
+        }
     }
 }
 
 extension SearchScreenViewController: SearchScreenNoResultsViewDelegate {
     func searchScreenNoResultsView(_ view: SearchScreenNoResultsView, didTapOn example: String) {
-        proceedFutherWith(https: example)
+        startSearchWith(string: example)
     }
 }

@@ -13,7 +13,7 @@ class ApplicationInitializeViewController: CustomViewController {
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView?
     @IBOutlet private weak var loadingTextLabel: UILabel?
 
-    private var context: Context?
+    private var appContext: AppContext?
     private var sendPopToRootViewControllerObserver: Any?
     private weak var searchViewController: UIViewController?
 
@@ -30,12 +30,12 @@ class ApplicationInitializeViewController: CustomViewController {
     }
 
     private func proceed() {
-        let context = Context()
-        self.context = context
-        context.initialize()
+        let appContext = AppContext()
+        self.appContext = appContext
+        appContext.initialize()
         
         let searchViewController = SearchScreenViewController.fromStoryboard(
-            context: context,
+            appContext: appContext,
             searchText: ""
         )
         

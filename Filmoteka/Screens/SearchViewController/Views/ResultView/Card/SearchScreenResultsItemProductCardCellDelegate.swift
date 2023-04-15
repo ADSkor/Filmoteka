@@ -11,6 +11,11 @@ import Foundation
 protocol SearchScreenResultsItemProductCardCellDelegate: AnyObject {
     func searchScreenResultsItemProductCardCell(
         _ cell: SearchScreenResultsItemProductCardCell,
-        didSelectElement value: String
+        didSelect film: Film
+    )
+    
+    func searchScreenResultsItemProductCardCell(
+        _ cell: SearchScreenResultsItemProductCardCell,
+        didTapFavorite film: Film
     )
 }
