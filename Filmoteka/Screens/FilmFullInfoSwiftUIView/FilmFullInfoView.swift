@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct FilmFullInfoView: View {
-    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode> // for .dismiss()
     @State var film: Film
     @State var appContext: AppContext
-    var dismissAction: (() -> Void)
     
     var body: some View {
         VStack {
             TopViewWithNameAndFavoriteButton(appContext: appContext, title: film.title, filmId: film.id) {
-                dismissAction()
+                dismiss()
             }
             ScrollView {
                 FilmImageFromWebView(poster_path: film.poster_path)
@@ -35,11 +34,19 @@ struct FilmFullInfoView: View {
         }
     }
     
+    static func viewController(film: Film, mainAppContext: AppContext) -> UIViewController {
+        let filmFullInfoView = FilmFullInfoView(film: film, appContext: mainAppContext)
+        let filmFullInfoViewVC = UIHostingController(rootView: filmFullInfoView)
+        return filmFullInfoViewVC
+    }
     
+    private func dismiss() {
+        mode.wrappedValue.dismiss()
+    }
 }
 
 struct FilmFullInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        FilmFullInfoView(film: Film(json: ""), appContext: AppContext(), dismissAction: {})
+        FilmFullInfoView(film: Film(json: ""), appContext: AppContext())
     }
 }

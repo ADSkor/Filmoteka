@@ -128,7 +128,6 @@ class SearchScreenViewController: CustomViewController {
 
         switch state {
         case .specifyingSearchRequest:
-            searchResultsView?.isHidden = true
             activityIndicatorView?.stop()
             noResultsView?.isHidden = true
             
@@ -220,13 +219,9 @@ extension SearchScreenViewController: SearchScreenDataFetcherDelegate {
 extension SearchScreenViewController: SearchScreenResultsViewDelegate {
     func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, film: Film) {
         guard let appContext else { return }
-        let filmFullInfoView = FilmFullInfoView(film: film, appContext: appContext) {
-            //to dismiss by button inside that Controller
-            self.dismiss(animated: true)
-        }
-        let filmFullInfoViewVC = UIHostingController(rootView: filmFullInfoView)
-        filmFullInfoViewVC.modalPresentationStyle = .fullScreen
-        present(filmFullInfoViewVC, animated: true)
+        let vc = FilmFullInfoView.viewController(film: film, mainAppContext: appContext)
+        vc.modalPresentationStyle = .fullScreen
+        push(vc, animated: true)
         itIsFirstAppearance = false
     }
     
