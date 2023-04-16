@@ -8,6 +8,7 @@
 import Miji
 import UIKit
 
+//To help user with search
 class SearchScreenNoResultsView: XibView {
     
     @IBOutlet private weak var topLabel: UILabel?

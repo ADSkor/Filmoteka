@@ -15,7 +15,6 @@ class TimeoutRequestRetryFlowController {
         address: String,
         headers: Alamofire.HTTPHeaders,
         shouldHandleErrors: Bool,
-        shouldRefreshToken: Bool,
         session: Session = AF,
         completion: ((JSON?, Error?, Int?) -> Void)?
     ) {
@@ -31,7 +30,6 @@ class TimeoutRequestRetryFlowController {
                     headers: headers,
                     shouldHandleErrors: shouldHandleErrors,
                     shouldHandleTimeout: true,
-                    shouldRefreshToken: shouldRefreshToken,
                     session: session,
                     completion: completion
                 )

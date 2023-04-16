@@ -8,6 +8,7 @@
 import UIKit
 import Miji
 
+//Text cell with button
 class SearchScreenNoResultsViewExample: TableViewAdapterCell {
     @IBOutlet private weak var mainLabel: UILabel?
 

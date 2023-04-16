@@ -8,6 +8,7 @@
 import Foundation
 import Miji
 
+//prepared for mock test
 class MockAPI: API {
     private let appContext: AppContext
 

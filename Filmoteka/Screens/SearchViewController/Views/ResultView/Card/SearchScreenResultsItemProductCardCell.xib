@@ -22,8 +22,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FG2-Ph-wrk">
-                        <rect key="frame" x="140" y="97" width="230" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="343.33333333333331" y="99.666666666666671" width="26.666666666666686" height="14.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.49693373489999998" green="0.50980392159999999" blue="0.49846706800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -53,6 +53,12 @@
                             <action selector="didTapFavorite:" destination="ljH-6j-gsQ" eventType="touchUpInside" id="EeX-r7-xca"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of release:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AsZ-I2-Sx7">
+                        <rect key="frame" x="246.00000000000003" y="99.666666666666671" width="89.333333333333343" height="14.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.49693373489999998" green="0.50980392159999999" blue="0.49846706800000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Id5-gv-2El" firstAttribute="top" secondItem="hYs-8M-21B" secondAttribute="top" constant="20" id="97C-i5-fvo"/>
@@ -60,10 +66,11 @@
                     <constraint firstAttribute="bottom" secondItem="FG2-Ph-wrk" secondAttribute="bottom" constant="20" id="FDp-fc-oNY"/>
                     <constraint firstItem="wki-21-PzD" firstAttribute="leading" secondItem="wIo-dZ-tC7" secondAttribute="trailing" constant="8" id="FID-th-mpw"/>
                     <constraint firstItem="wIo-dZ-tC7" firstAttribute="top" secondItem="hYs-8M-21B" secondAttribute="top" id="LZF-U1-mDs"/>
+                    <constraint firstItem="FG2-Ph-wrk" firstAttribute="leading" secondItem="AsZ-I2-Sx7" secondAttribute="trailing" constant="8" id="M4Y-DU-cX7"/>
+                    <constraint firstItem="AsZ-I2-Sx7" firstAttribute="centerY" secondItem="FG2-Ph-wrk" secondAttribute="centerY" id="NlE-TA-X01"/>
                     <constraint firstItem="wIo-dZ-tC7" firstAttribute="leading" secondItem="hYs-8M-21B" secondAttribute="leading" constant="20" id="QuG-sW-8DQ"/>
                     <constraint firstAttribute="trailing" secondItem="Id5-gv-2El" secondAttribute="trailing" constant="20" id="U5Q-Iu-au9"/>
                     <constraint firstAttribute="bottom" secondItem="wki-21-PzD" secondAttribute="bottom" constant="5" id="XSm-5o-A3r"/>
-                    <constraint firstItem="FG2-Ph-wrk" firstAttribute="leading" secondItem="Id5-gv-2El" secondAttribute="leading" id="bHz-rv-vSD"/>
                     <constraint firstItem="UJL-wO-zf4" firstAttribute="top" secondItem="hYs-8M-21B" secondAttribute="top" id="bZa-lh-ZJB"/>
                     <constraint firstAttribute="bottom" secondItem="UJL-wO-zf4" secondAttribute="bottom" id="c5a-DE-xRS"/>
                     <constraint firstItem="Id5-gv-2El" firstAttribute="leading" secondItem="wIo-dZ-tC7" secondAttribute="trailing" constant="16" id="f29-mx-trr"/>

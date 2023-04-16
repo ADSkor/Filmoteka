@@ -8,6 +8,7 @@
 import Miji
 import UIKit
 
+//One of Reusable Cells
 class EmptySpaceCell: TableViewAdapterCell {
     static func item(
         identifier: String = UUID().uuidString,

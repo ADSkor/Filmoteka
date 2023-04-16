@@ -25,6 +25,7 @@ extension UIViewController {
         view.endEditing(true)
     }
 
+    //To show anything when we need to
     var visibleViewController: UIViewController? {
         if let navigationController = self as? UINavigationController {
             return navigationController.topViewController?.visibleViewController
@@ -41,6 +42,7 @@ extension UIViewController {
     }
 }
 
+//get your own bag
 class CustomViewController: UIViewController {
     let bag: Bag = .init()
 

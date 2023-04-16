@@ -9,6 +9,7 @@ import UIKit
 import Miji
 import SDWebImage
 
+//This controller for handle which controller we give next
 class ApplicationInitializeViewController: CustomViewController {
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView?
     @IBOutlet private weak var loadingTextLabel: UILabel?
@@ -17,6 +18,7 @@ class ApplicationInitializeViewController: CustomViewController {
     private var sendPopToRootViewControllerObserver: Any?
     private weak var searchViewController: UIViewController?
 
+    //Button if you need something to do while you waiting for loading
     @IBAction private func didTap(button _: UIButton?) {
         #if DEBUG
         debugPrint("We can use it for debug session...")

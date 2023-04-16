@@ -9,6 +9,7 @@
 import Miji
 import UIKit
 
+//One of Reusable Cells (one of main) - maybe seems strange but really useful actualy
 class TextCell: TableViewAdapterCell {
     @IBOutlet private weak var label: UILabel?
     @IBOutlet private weak var iconView: UIImageView?

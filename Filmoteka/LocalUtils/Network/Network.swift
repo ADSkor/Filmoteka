@@ -25,9 +25,7 @@ class Network {
         headers: Alamofire.HTTPHeaders = ["Content-Type": "application/json"],
         shouldHandleErrors: Bool = true,
         shouldHandleTimeout: Bool = true,
-        shouldRefreshToken: Bool = true,
         session: Session = AF,
-        legacyCall: Bool = true,
         logging: Bool = true,
         dataTransformer: DataTransformer? = nil,
         completion: ((JSON?, Error?, Int?) -> Void)?
@@ -74,7 +72,6 @@ class Network {
                             address: address,
                             headers: headers,
                             shouldHandleErrors: shouldHandleErrors,
-                            shouldRefreshToken: shouldRefreshToken,
                             session: session,
                             completion: completion
                         )
@@ -94,7 +91,6 @@ class Network {
         parameters: [String: Any] = [:],
         headers: Alamofire.HTTPHeaders = ["Content-Type": "application/json"],
         session: Session = AF,
-        legacyCall: Bool = true,
         completion: @escaping (JSON?, Error?, Int?) -> Void
     ) {
 
@@ -125,7 +121,6 @@ class Network {
         parameters: [String: Any] = [:],
         headers: Alamofire.HTTPHeaders = ["Content-Type": "application/json"],
         session: Session = AF,
-        legacyCall: Bool = true,
         completion: ((JSON?, Error?, Int?) -> Void)? = nil
     ) {
 
@@ -160,9 +155,7 @@ class Network {
         parameters: [String: Any] = [:],
         headers: Alamofire.HTTPHeaders = ["Content-Type": "application/json"],
         sendJSON: Bool = true,
-        shouldRefreshToken: Bool = true,
         session: Session = AF,
-        legacyCall: Bool = true,
         mockResponseKey: String? = nil,
         timeoutInterval: TimeInterval = 60,
         dataTransformer: DataTransformer? = nil,

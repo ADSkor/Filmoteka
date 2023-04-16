@@ -36,7 +36,7 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="hZl-0Y-gxE" secondAttribute="height" multiplier="1:1" id="uvJ-Tb-GgN"/>
                     </constraints>
-                    <state key="normal" image="search"/>
+                    <state key="normal" image="magnifyingglass" catalog="system"/>
                     <connections>
                         <action selector="didTapWithSearchButton:" destination="-1" eventType="touchUpInside" id="omZ-Vc-SRE"/>
                     </connections>
@@ -60,7 +60,7 @@
         </view>
     </objects>
     <resources>
-        <image name="search" width="694" height="692"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
