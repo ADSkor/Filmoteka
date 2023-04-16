@@ -9,5 +9,6 @@ List of third-party libraries:
 
 3 SDWebImage + SDWebImageSwiftUI: One of the best solutions to reverse photos from the web. It has many additional features, such as photo caching with an initiated disk in the device's memory and a conveniently configurable size of the allowed cache. It also has the necessary display elements, such as the Activity Indicator and PlaceHolder.
 
-![Apr-17-2023 02-33-25](https://user-images.githubusercontent.com/39741772/232326994-b19fb078-66d7-4e8c-9960-c70d1d433d3d.gif)
+![Apr-17-2023 02-39-06](https://user-images.githubusercontent.com/39741772/232327284-4a6b7fbc-66a7-4991-8ed7-08889cf30859.gif)
+
 
