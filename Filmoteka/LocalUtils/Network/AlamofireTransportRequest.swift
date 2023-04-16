@@ -10,6 +10,7 @@ import Foundation
 import Miji
 import SwiftyJSON
 
+//Alamofire with cache
 class AlamofireTransportRequest<T: HTTPRequestInput>: RequestTransport<T> {
     private let cachePrefix = "CACHED_REQUEST_"
     private let cacheDatePrefix = "CACHED_REQUEST_DATE_"
@@ -56,6 +57,7 @@ class AlamofireTransportRequest<T: HTTPRequestInput>: RequestTransport<T> {
         }
     }
 
+    //MARK: - We hanve cache
     private func internalPerformCache(_ completion: ((Error?, Any?) -> Void)?) -> Bool {
         guard let cacheKey else { return false }
         let key = "\(cachePrefix)\(cacheKey)"
@@ -101,8 +103,7 @@ class AlamofireTransportRequest<T: HTTPRequestInput>: RequestTransport<T> {
         Network.shared.patch(
             address: address,
             parameters: body,
-            headers: headers,
-            legacyCall: false
+            headers: headers
         ) { [weak self] json, error, _ in
             guard let self else { return }
             self.keepAliveAfterCompletion = false
@@ -156,7 +157,6 @@ class AlamofireTransportRequest<T: HTTPRequestInput>: RequestTransport<T> {
         Network.shared.get(
             address: address,
             headers: headers,
-            legacyCall: false,
             dataTransformer: dataTransformer
         ) { [weak self] json, error, _ in
             guard let self else { return }

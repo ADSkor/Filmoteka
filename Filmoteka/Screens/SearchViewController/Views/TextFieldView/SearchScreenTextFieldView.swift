@@ -8,6 +8,7 @@
 import Miji
 import UIKit
 
+//Usual textField inside cell with delegates
 class SearchScreenTextFieldView: XibView {
     @IBOutlet private weak var separatorView: UIView?
     @IBOutlet private weak var searchButton: UIButton?
@@ -15,6 +16,7 @@ class SearchScreenTextFieldView: XibView {
 
     weak var delegate: SearchScreenTextFieldViewDelegate?
     
+    //Usual preparations
     override func awakeFromNib() {
         super.awakeFromNib()
         searchButton?.tintColor = UIColor.black
@@ -25,6 +27,7 @@ class SearchScreenTextFieldView: XibView {
         separatorView?.backgroundColor = .systemGray2
     }
     
+    //To show user that it is the same text which was found already
     func shakeButton() {
         searchButton?.shake()
     }

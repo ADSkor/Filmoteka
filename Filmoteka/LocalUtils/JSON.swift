@@ -8,6 +8,7 @@
 import Foundation
 import SwiftyJSON
 
+//We can use to load JSON from file, most of all for Mock tests.
 extension JSON {
     static func from(filename: String) -> JSON? {
         let resource = filename.split(".").at(0)

@@ -8,6 +8,7 @@
 import Foundation
 
 enum SearchScreenViewControllerState {
+    //specifyingSearchRequest - user typing for search
     case specifyingSearchRequest
     case fetching
     case results

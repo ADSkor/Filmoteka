@@ -428,9 +428,9 @@
 		1E7B8B7729E9A16600F7562A /* NoResultsView */ = {
 			isa = PBXGroup;
 			children = (
+				1E7B8B7A29E9A16600F7562A /* Cells */,
 				1E7B8B7829E9A16600F7562A /* SearchScreenNoResultsViewPlaceholderExamplesFactory.swift */,
 				1E7B8B7929E9A16600F7562A /* SearchScreenNoResultsView.swift */,
-				1E7B8B7A29E9A16600F7562A /* Cells */,
 				1E7B8B8029E9A16600F7562A /* SearchScreenNoResultsViewDelegate.swift */,
 				1E7B8B8129E9A16600F7562A /* SearchScreenNoResultsView.xib */,
 			);

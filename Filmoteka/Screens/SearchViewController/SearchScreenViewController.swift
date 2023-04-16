@@ -11,6 +11,7 @@ import Miji
 import SwiftyJSON
 import SwiftUI
 
+    //All ViewControllers in UIKit are based on TableView. Thanks to this we can expand any ViewController with cells without having to change the ViewController itself
 class SearchScreenViewController: CustomViewController {
 
     @IBOutlet private weak var searchTextFieldView: SearchScreenTextFieldView?
@@ -27,6 +28,7 @@ class SearchScreenViewController: CustomViewController {
                         reloadData()
                     }
                 }
+    //We need var's because we need to change the ViewControllers when we get them from 'fromStoryboard' method. It doesn't increase memory, as we might have thought. In basic applications I keep track with WatchDog, which I created with a colleague of mine a couple of years ago
     private var appContext: AppContext?,
                 state: SearchScreenViewControllerState = .noResults,
                 searchText = "",
@@ -40,6 +42,7 @@ class SearchScreenViewController: CustomViewController {
                 animatedPresentation = true,
                 itIsFirstAppearance = true
     
+    //To create that ViewController anywhere and call it
     static func fromStoryboard(
         appContext: AppContext,
         searchText: String,
@@ -55,6 +58,7 @@ class SearchScreenViewController: CustomViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        //FirstAppearance avoid
         if !itIsFirstAppearance {
             reloadData()
         }
@@ -62,6 +66,7 @@ class SearchScreenViewController: CustomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Preparations
         setupToHideKeyboardOnTapOnView()
         unlockInterface()
         statusBarView?.backgroundColor = .white
@@ -69,17 +74,21 @@ class SearchScreenViewController: CustomViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = .white
 
+        //create and init SearchScreenDataFetcher
         guard let appContext else { return }
         dataFetcher = SearchScreenDataFetcher(
             appContext: appContext,
             delegate: self
         )
         
+        //take all needed delegates
         searchTextFieldView?.delegate = self
         searchResultsView?.delegate = self
         noResultsView?.delegate = self
+        //set focus on search field for user
         searchTextFieldView?.set(text: searchText)
         searchTextFieldView?.setFocus()
+        //set state that means user start typing
         set(state: .specifyingSearchRequest)
     }
 
@@ -91,6 +100,7 @@ class SearchScreenViewController: CustomViewController {
         interfaceBlockingView?.hide()
     }
 
+    //Reload cells, for update whole view, without ios glitch which heppends when you trying to update only your cell in tableView
     func reloadData() {
         searchResultsView?.set(
             films: films,
@@ -127,6 +137,7 @@ class SearchScreenViewController: CustomViewController {
         self.state = state
 
         switch state {
+            //not suree that we need it, when user starts typing new text
         case .specifyingSearchRequest:
             activityIndicatorView?.stop()
             noResultsView?.isHidden = true
@@ -152,6 +163,7 @@ class SearchScreenViewController: CustomViewController {
         }
     }
 
+    //Helper for user when he's didn't get any of answers
     private func reloadNoResultView() {
         noResultsView?.set(
             searchText: searchText,
@@ -182,8 +194,9 @@ extension SearchScreenViewController: SearchScreenTextFieldViewDelegate {
 
 extension SearchScreenViewController: SearchScreenDataFetcherDelegate {
     func searchScreenDataFetcher(_ fetcher: SearchScreenDataFetcher, didFetch fullFilmsInfo: FullFilmsInfo) {
-        
+        //checker that we can get more
         guard state == .fetching else { return }
+        //just for check how much pages was downloaded
         debugPrint("page \(fullFilmsInfo.page) of \(fullFilmsInfo.total_pages) pages")
         lastPage = fullFilmsInfo.total_pages
         
@@ -205,6 +218,7 @@ extension SearchScreenViewController: SearchScreenDataFetcherDelegate {
         }
     }
     
+    //show errors
     func searchScreenDataFetcher(_ fetcher: SearchScreenDataFetcher, didFetch error: Error?) {
         guard let error else {
             showAlert(title: "'SearchScreenDataFetcher' did fetch Error, but can't recognize it like 'Error'")
@@ -219,13 +233,14 @@ extension SearchScreenViewController: SearchScreenDataFetcherDelegate {
 extension SearchScreenViewController: SearchScreenResultsViewDelegate {
     func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, film: Film) {
         guard let appContext else { return }
+        //SwiftUI calling from UIKit (Extra)
         let vc = FilmFullInfoView.viewController(film: film, mainAppContext: appContext)
         vc.modalPresentationStyle = .fullScreen
         push(vc, animated: true)
         itIsFirstAppearance = false
     }
     
-    //MARK: - Favorites
+    //MARK: - Favorites (Extra)
     func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, didPressFavorite film: Film) {
         guard let appContext else { return }
         if let index = appContext.favoritesMovies.firstIndex(where: { $0 == film.id }) {
@@ -237,7 +252,7 @@ extension SearchScreenViewController: SearchScreenResultsViewDelegate {
         reloadData()
     }
     
-    //MARK: - Paging
+    //MARK: - Paging (Extra)
     func searchScreenResultsViewDidReachBottom(_ view: SearchScreenResultsView) {
         guard state == .results else { return }
         if lastPage != requestedPage {

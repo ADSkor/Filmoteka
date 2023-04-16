@@ -15,6 +15,7 @@ class SearchScreenDataFetcher {
     private var fetchingInProgress = false
     private let appContext: AppContext
 
+    //Bag for cache and for elements
     private let bag: Bag = .init()
 
     init(
@@ -25,6 +26,7 @@ class SearchScreenDataFetcher {
         self.delegate = delegate
     }
 
+    //automatic fetcher return output
     func fetch(endpointString: String) {
         guard !fetchingInProgress else { return }
         fetchingInProgress = true

@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+//All Elements from bottom part of screen
 struct TitleAndTextOfElement: View {
-    var title: String
-    var text: String
+    let title: String
+    let text: String
     
     var body: some View {
         VStack {

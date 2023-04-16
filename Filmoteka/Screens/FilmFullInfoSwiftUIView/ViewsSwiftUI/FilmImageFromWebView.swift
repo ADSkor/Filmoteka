@@ -8,8 +8,9 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+//Loading from web with SDWebImage
 struct FilmImageFromWebView: View {
-    var poster_path: String
+    let poster_path: String
     
     var body: some View {
         VStack {

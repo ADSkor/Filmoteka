@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+//Languageinfo + adutl symbol
 struct LanguageAndMatureSymbolView: View {
-    var original_language: String
-    var adult: Bool
+    let original_language: String
+    let adult: Bool
+    
     var body: some View {
         HStack {
             Text("Original language:")

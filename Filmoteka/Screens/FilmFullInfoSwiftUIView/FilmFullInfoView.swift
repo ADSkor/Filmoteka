@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Main view with full information about film
 struct FilmFullInfoView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode> // for .dismiss()
     @State var film: Film
@@ -30,8 +31,8 @@ struct FilmFullInfoView: View {
                 }
                 TitleAndTextOfElement(title: "Release date", text: film.release_date)
                 
-            }
-        }
+            } //ScrollView
+        } //VStack
     }
     
     static func viewController(film: Film, mainAppContext: AppContext) -> UIViewController {

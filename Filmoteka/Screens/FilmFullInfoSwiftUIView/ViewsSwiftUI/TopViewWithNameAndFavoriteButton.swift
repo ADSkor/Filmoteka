@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Top view with name and buttons in swiftUI
 struct TopViewWithNameAndFavoriteButton: View {
     //Properties
     @State var appContext: AppContext

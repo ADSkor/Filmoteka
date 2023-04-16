@@ -7,6 +7,7 @@
 
 import Miji
 
+//Factory
 class PlaceholderExamples {
     @CellItemsBuilder static func search(
         searchText: String,
