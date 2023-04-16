@@ -71,6 +71,13 @@
 		1EB2BCBB29EA7EBC0020232F /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2BCBA29EA7EBC0020232F /* Secrets.swift */; };
 		1EB2BCBE29EAA9DA0020232F /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2BCBD29EAA9DA0020232F /* Film.swift */; };
 		1EB2BCC029EAD5FA0020232F /* FullFilmsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB2BCBF29EAD5FA0020232F /* FullFilmsInfo.swift */; };
+		1EF7F1D729EB12A20095921F /* FilmFullInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1D629EB12A20095921F /* FilmFullInfoView.swift */; };
+		1EF7F1DB29EC04AF0095921F /* FilmImageFromWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1DA29EC04AF0095921F /* FilmImageFromWebView.swift */; };
+		1EF7F1DE29EC06020095921F /* TopViewWithNameAndFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1DD29EC06020095921F /* TopViewWithNameAndFavoriteButton.swift */; };
+		1EF7F1E029EC0CB60095921F /* LanguageAndMatureSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1DF29EC0CB60095921F /* LanguageAndMatureSymbolView.swift */; };
+		1EF7F1E329EC14420095921F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF7F1E229EC14420095921F /* SDWebImageSwiftUI */; };
+		1EF7F1E529EC19900095921F /* TitleAndTextOfElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1E429EC19900095921F /* TitleAndTextOfElement.swift */; };
+		1EF7F1E729EC20930095921F /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1E629EC20930095921F /* StarRatingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +163,12 @@
 		1EB2BCBA29EA7EBC0020232F /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		1EB2BCBD29EAA9DA0020232F /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		1EB2BCBF29EAD5FA0020232F /* FullFilmsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullFilmsInfo.swift; sourceTree = "<group>"; };
+		1EF7F1D629EB12A20095921F /* FilmFullInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmFullInfoView.swift; sourceTree = "<group>"; };
+		1EF7F1DA29EC04AF0095921F /* FilmImageFromWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmImageFromWebView.swift; sourceTree = "<group>"; };
+		1EF7F1DD29EC06020095921F /* TopViewWithNameAndFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewWithNameAndFavoriteButton.swift; sourceTree = "<group>"; };
+		1EF7F1DF29EC0CB60095921F /* LanguageAndMatureSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageAndMatureSymbolView.swift; sourceTree = "<group>"; };
+		1EF7F1E429EC19900095921F /* TitleAndTextOfElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndTextOfElement.swift; sourceTree = "<group>"; };
+		1EF7F1E629EC20930095921F /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF7F1E329EC14420095921F /* SDWebImageSwiftUI in Frameworks */,
 				1E6C551929E9A5B50071D178 /* SwiftyJSON in Frameworks */,
 				1EB2BCB429EA5F220020232F /* Miji in Frameworks */,
 				1E6C551C29E9A6080071D178 /* Alamofire in Frameworks */,
@@ -364,6 +378,7 @@
 		1E7B8B6229E9A11F00F7562A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1EF7F1D529EB12650095921F /* FilmFullInfoSwiftUIView */,
 				1EB2BCB529EA62860020232F /* ApplicationInitializeViewController */,
 				1E7B8B6529E9A16500F7562A /* SearchViewController */,
 			);
@@ -482,6 +497,27 @@
 			path = AppDelegates;
 			sourceTree = "<group>";
 		};
+		1EF7F1D529EB12650095921F /* FilmFullInfoSwiftUIView */ = {
+			isa = PBXGroup;
+			children = (
+				1EF7F1DC29EC059B0095921F /* ViewsSwiftUI */,
+				1EF7F1D629EB12A20095921F /* FilmFullInfoView.swift */,
+			);
+			path = FilmFullInfoSwiftUIView;
+			sourceTree = "<group>";
+		};
+		1EF7F1DC29EC059B0095921F /* ViewsSwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				1EF7F1DD29EC06020095921F /* TopViewWithNameAndFavoriteButton.swift */,
+				1EF7F1DA29EC04AF0095921F /* FilmImageFromWebView.swift */,
+				1EF7F1E429EC19900095921F /* TitleAndTextOfElement.swift */,
+				1EF7F1DF29EC0CB60095921F /* LanguageAndMatureSymbolView.swift */,
+				1EF7F1E629EC20930095921F /* StarRatingView.swift */,
+			);
+			path = ViewsSwiftUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -503,6 +539,7 @@
 				1E6C551829E9A5B50071D178 /* SwiftyJSON */,
 				1E6C551B29E9A6080071D178 /* Alamofire */,
 				1EB2BCB329EA5F220020232F /* Miji */,
+				1EF7F1E229EC14420095921F /* SDWebImageSwiftUI */,
 			);
 			productName = Filmoteka;
 			productReference = 1E7B8B2A29E98EF600F7562A /* Filmoteka.app */;
@@ -580,6 +617,7 @@
 				1E7B8B5F29E98F7600F7562A /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				1E6C551729E9A5B50071D178 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				1E6C551A29E9A6080071D178 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				1EF7F1E129EC14420095921F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 1E7B8B2B29E98EF600F7562A /* Products */;
 			projectDirPath = "";
@@ -634,6 +672,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E6C553E29EA40F20071D178 /* Network.swift in Sources */,
+				1EF7F1E029EC0CB60095921F /* LanguageAndMatureSymbolView.swift in Sources */,
 				1EB2BCB929EA62870020232F /* ApplicationInitializeViewController.swift in Sources */,
 				1E7B8B9C29E9A16600F7562A /* SearchScreenNoResultsViewExampleDelegate.swift in Sources */,
 				1E7B8B9629E9A16600F7562A /* SearchScreenTextFieldViewDelegate.swift in Sources */,
@@ -643,10 +682,13 @@
 				1E6C552C29E9AABC0071D178 /* BackendAPI.swift in Sources */,
 				1EB2BCC029EAD5FA0020232F /* FullFilmsInfo.swift in Sources */,
 				1E6C555329EA54780071D178 /* TextCellData.swift in Sources */,
+				1EF7F1E529EC19900095921F /* TitleAndTextOfElement.swift in Sources */,
 				1E7B8BA629E9A16600F7562A /* SearchScreenResultsViewItemsFactory.swift in Sources */,
+				1EF7F1DE29EC06020095921F /* TopViewWithNameAndFavoriteButton.swift in Sources */,
 				1E6C553129EA3DE00071D178 /* GetFilmInfoRequestInput.swift in Sources */,
 				1E7B8B9929E9A16600F7562A /* SearchScreenNoResultsViewPlaceholderExamplesFactory.swift in Sources */,
 				1E6C553A29EA3F5C0071D178 /* RequestDataSource.swift in Sources */,
+				1EF7F1E729EC20930095921F /* StarRatingView.swift in Sources */,
 				1E7B8BA429E9A16600F7562A /* SearchScreenResultsItemProductCardCell.swift in Sources */,
 				1E6C552629E9A9E80071D178 /* SemiAPI.swift in Sources */,
 				1E6C555229EA54780071D178 /* TextCell.swift in Sources */,
@@ -656,7 +698,9 @@
 				1E6C555629EA5C070071D178 /* UIActivityIndicatorView.swift in Sources */,
 				1E6C552329E9A96F0071D178 /* API.swift in Sources */,
 				1E7B8B9D29E9A16600F7562A /* SearchScreenNoResultsViewExampleData.swift in Sources */,
+				1EF7F1D729EB12A20095921F /* FilmFullInfoView.swift in Sources */,
 				1E7B8BA329E9A16600F7562A /* SearchScreenResultsItemProductCardCellDelegate.swift in Sources */,
+				1EF7F1DB29EC04AF0095921F /* FilmImageFromWebView.swift in Sources */,
 				1E7B8B8C29E9A16600F7562A /* SearchScreenDataFetcher.swift in Sources */,
 				1E7B8B9A29E9A16600F7562A /* SearchScreenNoResultsView.swift in Sources */,
 				1E6C554229EA48A20071D178 /* TimeoutRequestRetryFlowController.swift in Sources */,
@@ -1043,6 +1087,14 @@
 				kind = branch;
 			};
 		};
+		1EF7F1E129EC14420095921F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1064,6 +1116,11 @@
 		1EB2BCB329EA5F220020232F /* Miji */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Miji;
+		};
+		1EF7F1E229EC14420095921F /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EF7F1E129EC14420095921F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -17,12 +17,16 @@ class SearchScreenTextFieldView: XibView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        searchButton?.tintColor = UIColor.white
+        searchButton?.tintColor = UIColor.black
         textField?.font = UIFont.boldItalicFont(size: 16)
         textField?.returnKeyType = .search
         textField?.addTarget(self, action: #selector(textDidChange(_:)), for: .editingChanged)
         textField?.delegate = self
         separatorView?.backgroundColor = .systemGray2
+    }
+    
+    func shakeButton() {
+        searchButton?.shake()
     }
 
     func resignFocus() {

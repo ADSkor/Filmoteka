@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Miji
 import SwiftyJSON
+import SwiftUI
 
 class SearchScreenViewController: CustomViewController {
 
@@ -36,7 +37,8 @@ class SearchScreenViewController: CustomViewController {
                 dataFetcher: SearchScreenDataFetcher?,
                 runSearchOnStart = false,
                 observer: Any?,
-                animatedPresentation = true
+                animatedPresentation = true,
+                itIsFirstAppearance = true
     
     static func fromStoryboard(
         appContext: AppContext,
@@ -53,13 +55,16 @@ class SearchScreenViewController: CustomViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        if !itIsFirstAppearance {
+            reloadData()
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupToHideKeyboardOnTapOnView()
         unlockInterface()
-        statusBarView?.backgroundColor = .blue.withAlphaComponent(0.3)
+        statusBarView?.backgroundColor = .white
 
         navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = .white
@@ -71,12 +76,10 @@ class SearchScreenViewController: CustomViewController {
         )
         
         searchTextFieldView?.delegate = self
-        searchTextFieldView?.setFocus()
-        searchTextFieldView?.set(text: searchText)
-
         searchResultsView?.delegate = self
         noResultsView?.delegate = self
-
+        searchTextFieldView?.set(text: searchText)
+        searchTextFieldView?.setFocus()
         set(state: .specifyingSearchRequest)
     }
 
@@ -100,7 +103,10 @@ class SearchScreenViewController: CustomViewController {
 
     private func performSearchText() {
         guard searchText.count > 0 else { return }
-        guard searchText != previousSearchText else { return }
+        guard searchText != previousSearchText else {
+            searchTextFieldView?.shakeButton()
+            return
+        }
         previousSearchText = searchText
         
         films = []
@@ -213,9 +219,18 @@ extension SearchScreenViewController: SearchScreenDataFetcherDelegate {
 
 extension SearchScreenViewController: SearchScreenResultsViewDelegate {
     func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, film: Film) {
-        debugPrint(film.id)
+        guard let appContext else { return }
+        let filmFullInfoView = FilmFullInfoView(film: film, appContext: appContext) {
+            //to dismiss by button inside that Controller
+            self.dismiss(animated: true)
+        }
+        let filmFullInfoViewVC = UIHostingController(rootView: filmFullInfoView)
+        filmFullInfoViewVC.modalPresentationStyle = .fullScreen
+        present(filmFullInfoViewVC, animated: true)
+        itIsFirstAppearance = false
     }
     
+    //MARK: - Favorites
     func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, didPressFavorite film: Film) {
         guard let appContext else { return }
         if let index = appContext.favoritesMovies.firstIndex(where: { $0 == film.id }) {

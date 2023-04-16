@@ -51,9 +51,13 @@ class SearchScreenResultsItemProductCardCell: TableViewAdapterCell {
     
     @IBAction func didTapFavorite(_ sender: Any) {
         guard let data else { return }
-        data.isFavorite.toggle()
-        isFavoriteButton?.setImage(data.isFavorite ? UIImage(named: "redHeart") : UIImage(named: "heart_empty"), for: .normal)
-        data.delegate?.searchScreenResultsItemProductCardCell(self, didTapFavorite: data.film)
+        UIView.animate(withDuration: 0.15) {
+            self.isFavoriteButton?.flash()
+            self.layoutIfNeeded()
+        }
+        main(delay: 0.15) {
+            self.data?.delegate?.searchScreenResultsItemProductCardCell(self, didTapFavorite: data.film)
+        }
     }
     
     @IBAction func didTap(_ sender: UIButton) {
