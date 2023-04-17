@@ -9,6 +9,8 @@ List of third-party libraries:
 
 3 SDWebImage + SDWebImageSwiftUI: One of the best solutions to reverse photos from the web. It has many additional features, such as photo caching with an initiated disk in the device's memory and a conveniently configurable size of the allowed cache. It also has the necessary display elements, such as the Activity Indicator and PlaceHolder.
 
+TESTS: For mock test just type "@flags" and press search in SearchScreen. Toggle MOCK, dismiss ViewController and start new search with "Jack mock". If you want to search real data - simply use "@flags" again.
+
 ![Apr-17-2023 02-39-06](https://user-images.githubusercontent.com/39741772/232327284-4a6b7fbc-66a7-4991-8ed7-08889cf30859.gif)
 
 
