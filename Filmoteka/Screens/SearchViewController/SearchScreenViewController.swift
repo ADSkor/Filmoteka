@@ -187,6 +187,12 @@ extension SearchScreenViewController: SearchScreenTextFieldViewDelegate {
     }
 
     func searchScreenTextFieldViewDidTapSearchButton(_: SearchScreenTextFieldView, text: String) {
+        //Mock test from inside app in runTime
+        guard text != "@flags" else {
+            let flagsViewController = FlagsCheckboxesScreen.viewController()
+            present(flagsViewController, animated: true)
+            return
+        }
         searchText = text
         performSearchText()
     }
@@ -234,9 +240,9 @@ extension SearchScreenViewController: SearchScreenResultsViewDelegate {
     func searchScreenResultsViewDidTap(_ view: SearchScreenResultsView, film: Film) {
         guard let appContext else { return }
         //SwiftUI calling from UIKit (Extra)
-        let vc = FilmFullInfoView.viewController(film: film, mainAppContext: appContext)
-        vc.modalPresentationStyle = .fullScreen
-        push(vc, animated: true)
+        let filmFullInfoView = FilmFullInfoView.viewController(film: film, mainAppContext: appContext)
+        filmFullInfoView.modalPresentationStyle = .fullScreen
+        push(filmFullInfoView, animated: true)
         itIsFirstAppearance = false
     }
     

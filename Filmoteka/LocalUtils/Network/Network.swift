@@ -177,7 +177,7 @@ class Network {
                 .replacingOccurrences(of: "/", with: "_")
                 .replacingOccurrences(of: ":", with: "_")
                 .replacingOccurrences(of: ".", with: "_")
-                + "_mock_response.json"
+                + ".json"
             if let json = JSON.from(filename: filename) {
                 completion?(json, nil, 200)
             }

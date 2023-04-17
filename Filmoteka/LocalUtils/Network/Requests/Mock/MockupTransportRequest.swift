@@ -15,7 +15,7 @@ class MockupTransportRequest<T: HTTPRequestInput>: RequestTransport<T> {
         let endpoint = input.endpoint()
         debugPrint(endpoint)
 
-        let filename = endpoint.replacingOccurrences(of: "/", with: "_") + "_mock_response.json"
+        let filename = endpoint.replacingOccurrences(of: "/", with: "_") + ".json"
         let json = JSON.from(filename: filename)
 
         debugPrint("MOCK RESPONSE JSON FILENAME: \(filename)")

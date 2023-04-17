@@ -37,8 +37,7 @@ struct FilmFullInfoView: View {
     
     static func viewController(film: Film, mainAppContext: AppContext) -> UIViewController {
         let filmFullInfoView = FilmFullInfoView(film: film, appContext: mainAppContext)
-        let filmFullInfoViewVC = UIHostingController(rootView: filmFullInfoView)
-        return filmFullInfoViewVC
+        return UIHostingController(rootView: filmFullInfoView)
     }
     
     private func dismiss() {

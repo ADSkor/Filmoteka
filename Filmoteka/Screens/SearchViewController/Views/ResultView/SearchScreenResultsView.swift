@@ -34,7 +34,6 @@ class SearchScreenResultsView: XibView {
         tableViewAdapter.set(items: items)
     }
     
-    //TODO: Scroll to top with button at the end
     func scrollToTop() {
         tableViewAdapter.scrollToTop()
     }

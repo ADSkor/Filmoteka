@@ -78,6 +78,9 @@
 		1EF7F1E329EC14420095921F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF7F1E229EC14420095921F /* SDWebImageSwiftUI */; };
 		1EF7F1E529EC19900095921F /* TitleAndTextOfElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1E429EC19900095921F /* TitleAndTextOfElement.swift */; };
 		1EF7F1E729EC20930095921F /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1E629EC20930095921F /* StarRatingView.swift */; };
+		1EF7F1EB29ED1C0A0095921F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1EF7F1EA29ED1C0A0095921F /* SDWebImage */; };
+		1EF7F1EF29ED627D0095921F /* Jack+mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EF7F1EE29ED627D0095921F /* Jack+mock.json */; };
+		1EF7F1F329ED85DF0095921F /* FlagsCheckboxesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF7F1F229ED85DF0095921F /* FlagsCheckboxesScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +172,8 @@
 		1EF7F1DF29EC0CB60095921F /* LanguageAndMatureSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageAndMatureSymbolView.swift; sourceTree = "<group>"; };
 		1EF7F1E429EC19900095921F /* TitleAndTextOfElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndTextOfElement.swift; sourceTree = "<group>"; };
 		1EF7F1E629EC20930095921F /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
+		1EF7F1EE29ED627D0095921F /* Jack+mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Jack+mock.json"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		1EF7F1F229ED85DF0095921F /* FlagsCheckboxesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagsCheckboxesScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF7F1EB29ED1C0A0095921F /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,9 +252,9 @@
 		1E6C552D29E9AB340071D178 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				1EF7F1F029ED68340095921F /* Mock */,
 				1E6C552F29EA3B370071D178 /* GetFilmsRequest */,
 				1E6C553929EA3F5C0071D178 /* RequestDataSource.swift */,
-				1E6C555729EA5D120071D178 /* MockupTransportRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 		1E7B8B6229E9A11F00F7562A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1EF7F1F129ED85CB0095921F /* FlagsCheckboxesScreen */,
 				1EF7F1D529EB12650095921F /* FilmFullInfoSwiftUIView */,
 				1EB2BCB529EA62860020232F /* ApplicationInitializeViewController */,
 				1E7B8B6529E9A16500F7562A /* SearchViewController */,
@@ -518,6 +525,23 @@
 			path = ViewsSwiftUI;
 			sourceTree = "<group>";
 		};
+		1EF7F1F029ED68340095921F /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				1E6C555729EA5D120071D178 /* MockupTransportRequest.swift */,
+				1EF7F1EE29ED627D0095921F /* Jack+mock.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		1EF7F1F129ED85CB0095921F /* FlagsCheckboxesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1EF7F1F229ED85DF0095921F /* FlagsCheckboxesScreen.swift */,
+			);
+			path = FlagsCheckboxesScreen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -559,6 +583,9 @@
 				1E7B8B4229E98EF900F7562A /* PBXTargetDependency */,
 			);
 			name = FilmotekaTests;
+			packageProductDependencies = (
+				1EF7F1EA29ED1C0A0095921F /* SDWebImage */,
+			);
 			productName = FilmotekaTests;
 			productReference = 1E7B8B4029E98EF900F7562A /* FilmotekaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -643,6 +670,7 @@
 				1E6C555129EA54780071D178 /* TextCell.xib in Resources */,
 				1EB2BCB829EA62870020232F /* ApplicationInitializeViewController.storyboard in Resources */,
 				1E7B8B8D29E9A16600F7562A /* SearchScreenViewController.storyboard in Resources */,
+				1EF7F1EF29ED627D0095921F /* Jack+mock.json in Resources */,
 				1E7B8B9829E9A16600F7562A /* SearchScreenTextFieldView.xib in Resources */,
 				1E7B8BA129E9A16600F7562A /* SearchScreenResultsItemProductCardCell.xib in Resources */,
 				1E7B8B3729E98EF900F7562A /* Assets.xcassets in Resources */,
@@ -718,6 +746,7 @@
 				1E6C552A29E9AA840071D178 /* MockAPI.swift in Sources */,
 				1E7B8BA529E9A16600F7562A /* SearchScreenResultsView.swift in Sources */,
 				1E6C553629EA3E620071D178 /* CachedRequestInput.swift in Sources */,
+				1EF7F1F329ED85DF0095921F /* FlagsCheckboxesScreen.swift in Sources */,
 				1E6C553829EA3EED0071D178 /* CacheTimeInterval.swift in Sources */,
 				1E7B8B9B29E9A16600F7562A /* SearchScreenNoResultsViewExample.swift in Sources */,
 				1E7B8BA729E9A16600F7562A /* SearchScreenResultsViewDelegate.swift in Sources */,
@@ -1121,6 +1150,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1EF7F1E129EC14420095921F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		1EF7F1EA29ED1C0A0095921F /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E7B8B5F29E98F7600F7562A /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
